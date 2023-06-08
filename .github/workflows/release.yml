@@ -1,0 +1,18 @@
+name: release
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Pack files
+        uses: softprops/action-gh-release@v1
+        with:
+          files: "localApps-*.tar.gz"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
